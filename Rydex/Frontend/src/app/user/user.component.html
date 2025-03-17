@@ -1,0 +1,187 @@
+
+<div class="container">
+  <div class="header">
+    <h2>User Management</h2>
+    <button class="btn btn-primary" (click)="openModal()">
+      Add User
+    </button>
+  </div>
+  <div class="searchinput">
+    <input type="text" id="searchquery" [(ngModel)]="searchquery" (input)="getusers()">
+  </div>
+  <!-- Users Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th (click)="onclicksorting('name')">Name <i class="fa-solid fa-sort" style="color: #ffffff;"></i></th>
+          <th (click)="onclicksorting('email')">Email<i class="fa-solid fa-sort" style="color: #ffffff;"></i></th>
+          <th>Country</th>
+          <th (click)="onclicksorting('phone')">Phone<i class="fa-solid fa-sort" style="color: #ffffff;"></i></th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td><img [src]="'http://localhost:8000/'+ user.profile" alt=""
+              style="height: 90px; width: 90px; border-radius: 60px;"></td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.country[0].countryname}}</td>
+          <td>{{user.phone}}</td>
+          <td class="action-cell">
+            <button class="edit-button" (click)="editUser(user)">edit</button>
+            <button class="edit-button" (click)="deleteUser(user._id)">delete</button>
+            <button class="edit-button" (click)="openCardModal(user.stripeCustomerid)">card</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div *ngIf="isModalOpen" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{isEditing ? 'Edit User' : 'Add New User'}}</h2>
+      </div>
+
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label class="form-label">User Profile</label>
+          <input type="file" formControlName="profile" class="form-input" accept="image/*"
+            (change)="uploadimage($event)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">User Name</label>
+          <input type="text" formControlName="name" class="form-input">
+        </div>
+        <div  class="error-container" *ngIf="userForm.get('name')?.invalid && 
+                (userForm.get('name')?.dirty || 
+                 userForm.get('name')?.touched)">
+          <small class="error-message" *ngIf="userForm.get('name')?.errors?.['required']">
+            Username is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" formControlName="email" class="form-input">
+        </div>
+        <div  class="error-container" *ngIf="userForm.get('email')?.invalid && 
+                      (userForm.get('email')?.dirty || 
+                       userForm.get('email')?.touched)">
+          <small class="error-message" *ngIf="userForm.get('email')?.errors?.['required']">
+            Email is required
+          </small>
+          <small class="error-message" *ngIf="userForm.get('email')?.errors?.['email']">
+            Invalid email format
+          </small>
+          <small class="error-message" *ngIf="userForm.get('email')?.errors?.['duplicate']">
+            Email already exists
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <select name="" id="country" class="country-select" formControlName="country">
+            <option value="">-- Select Country --</option>
+            <option *ngFor="let country of countries" [value]="country._id">
+              {{country.countryname}}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input type="tel" formControlName="phone" class="form-input">
+        </div>
+        <div  class="error-container" *ngIf="userForm.get('phone')?.invalid && 
+                (userForm.get('phone')?.dirty || 
+                 userForm.get('phone')?.touched)">
+          <small class="error-message" *ngIf="userForm.get('phone')?.errors?.['required']">
+            Phone number is required
+          </small>
+          <small class="error-message" *ngIf="userForm.get('phone')?.errors?.['pattern']">
+            Invalid phone number format
+          </small>
+          <small class="error-message" *ngIf="userForm.get('phone')?.errors?.['duplicate']">
+            Phone number already exists
+          </small>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">
+            Cancel
+          </button>
+          <button class="btn btn-primary">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Card Modal -->
+  <div *ngIf="isCardModalOpen" class="modal-overlay">
+    <div class="modal-content">
+      <div class="cards-container">
+        <div *ngFor="let card of savedcards" 
+             class="card-item" 
+             [ngClass]="{'default-card': card.isDefault}"
+             [attr.data-brand]="card.card.brand.toLowerCase()">
+          
+          <div class="card-brand-icon">
+            <div class="brand-logo">
+              {{card.card.brand === 'visa' ? 'VISA' : 'MC'}}
+            </div>
+          </div>
+      
+          <div class="card-chip"></div>
+      
+          <div class="card-details">
+            <div class="card-number">
+              •••• •••• •••• {{card.card.last4}}
+            </div>
+            <div class="card-info">
+              <span class="brand-name">{{card.card.brand === 'visa' ? 'VISA' : 'MC'}}
+              </span>
+            </div>
+          </div>
+      
+          <div *ngIf="card.isDefault" class="default-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Default</span>
+          </div>
+      
+          <button *ngIf="!card.isDefault" (click)="setdefaultcard(card.id)" class="default-button">
+            Set as default
+          </button>
+        </div>
+      </div>
+      <div class="modal-header">
+        <h2>Add Card</h2>
+      </div>
+
+      <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions">
+      </ngx-stripe-card>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCardModal()">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="createToken()">
+          Save Card
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+   <button [disabled]="currentpage === 1" (click)="changepage(currentpage - 1)">previous</button>
+   <button [disabled]="currentpage === totalpage" (click)="changepage(currentpage + 1)">next</button>
+  </div>
+
+</div>
