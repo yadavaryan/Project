@@ -1,0 +1,125 @@
+/* Settings Styles */
+.settings-container {
+    background: linear-gradient(145deg, #EFF6E0, #ffffff);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 
+        0 10px 30px rgba(1, 22, 30, 0.1),
+        0 4px 6px rgba(89, 131, 146, 0.05),
+        inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    margin: 2rem auto;
+    max-width: 900px;
+    border: 1px solid rgba(174, 195, 176, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.settings-title {
+    color: #124559;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(174, 195, 176, 0.5);
+    text-align: center;
+    position: relative;
+}
+
+.settings-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: #598392;
+}
+
+.settings-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.settings-group .form-label {
+    color: #124559;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.settings-group .form-select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(174, 195, 176, 0.5);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #01161E;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23598392' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+    background-size: 1em;
+}
+
+.settings-group .form-select:hover {
+    border-color: #598392;
+    background-color: #ffffff;
+}
+
+.settings-group .form-select:focus {
+    outline: none;
+    border-color: #598392;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(89, 131, 146, 0.15);
+}
+
+.settings-group .form-select option {
+    color: #01161E;
+    padding: 0.75rem;
+    background-color: #ffffff;
+}
+
+.settings-group .form-select option:first-child {
+    color: #598392;
+    font-style: italic;
+}
+
+/* Responsive Design for Settings */
+@media (max-width: 768px) {
+    .settings-container {
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: 12px;
+    }
+
+    .settings-form {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .settings-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .settings-group .form-select {
+        padding: 0.875rem 1rem;
+    }
+}
