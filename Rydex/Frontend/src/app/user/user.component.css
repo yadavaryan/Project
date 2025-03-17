@@ -1,0 +1,567 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eff6e0;
+  color: #01161e;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Container layout */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgb(1 22 30 / 19%);
+}
+
+/* Header section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #eff6e0;
+}
+
+.header h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #124559;
+}
+
+.country-select {
+  padding: 0.625rem 1rem;
+  border: 1px solid #AEC3B0;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #01161E;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #124559;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(18, 69, 89, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #598392;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(18, 69, 89, 0.25);
+}
+
+.btn-secondary {
+  background-color: #eff6e0;
+  color: #124559;
+  border: 2px solid #aec3b0;
+}
+
+.btn-secondary:hover {
+  background-color: #aec3b0;
+  color: #01161e;
+}
+
+/* Table styles */
+.table-container {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(1, 22, 30, 0.06);
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+th {
+  background-color: #124559;
+  color: #fff;
+  font-weight: 600;
+  padding: 16px 24px;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+th i {
+  font-size: 12px;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
+td {
+  padding: 20px 24px;
+  color: #01161e;
+  font-size: 15px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #eff6e0;
+}
+
+/* Profile image styling */
+td img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(89, 131, 146, 0.2);
+}
+
+/* Action buttons */
+.action-cell {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 16px; /* Add spacing between the buttons */
+  align-items: center; /* Align buttons vertically */
+}
+
+.edit-button {
+  padding: 33px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: none;
+  border: none;
+  color: #124559;
+}
+
+
+.edit-button:hover {
+  background-color: #eff6e0;
+  transform: translateY(-1px);
+}
+
+
+.country-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #495057;
+  background-color: white;
+  cursor: pointer;
+}
+
+.country-select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.country-select option {
+  padding: 8px;
+} 
+
+
+
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px;
+  box-shadow: 0 20px 40px rgba(1, 22, 30, 0.2);
+  animation: modalSlideIn 0.3s ease;
+}
+
+/* credit-cards.component.scss */
+.cards-container {
+  padding: 1rem;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 800px;
+}
+
+.card-item {
+  height: 137px;
+  width: 400px;
+  padding: 1.5rem;
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 40%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  &.default-card {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  }
+
+  &[data-brand="visa"] {
+    background: linear-gradient(135deg, #142b6f 0%, #1a56db 100%);
+  }
+
+  &[data-brand="mastercard"] {
+    background: linear-gradient(135deg, #cc4b00 0%, #ea580c 100%);
+  }
+}
+
+.card-brand-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  
+  .brand-logo {
+    font-family: Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card-chip {
+  position: absolute;
+  top: 80px;
+  left: 24px;
+  width: 45px;
+  height: 34px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+  border-radius: 5px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35px;
+    height: 24px;
+    background: linear-gradient(to right, transparent 40%, rgba(255, 255, 255, 0.3) 45%, transparent 50%);
+    border-radius: 3px;
+  }
+}
+
+.card-details {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  color: white;
+}
+
+.card-number {
+  font-family: 'Courier New', monospace;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-left: 7px;
+  margin-bottom: 4px;
+
+  .brand-name {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .last-digits {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+}
+
+.default-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: white;
+  font-size: 0.875rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(4px);
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.default-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  font-size: 0.875rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.searchinput {
+  margin-bottom: 24px;
+}
+
+.searchinput input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #aec3b0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+  color: #01161e;
+}
+
+.searchinput input:focus {
+  outline: none;
+  border-color: #598392;
+  box-shadow: 0 0 0 4px rgba(89, 131, 146, 0.1);
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 12px 24px;
+  border: 2px solid #aec3b0;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #124559;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #124559;
+  color: #fff;
+  border-color: #124559;
+  transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+  background-color: #cfd1cb;
+  color: #aec3b0;
+  border-color: #aec3b0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pagination button.active {
+  background: #124559;
+  color: white;
+  border-color: #124559;
+}
+
+@keyframes modalSlideIn {
+  from {
+      transform: translateY(20px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.modal-header {
+  margin-bottom: 30px;
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #124559;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #01161e;
+  font-size: 15px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #aec3b0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #598392;
+  box-shadow: 0 0 0 4px rgba(89, 131, 146, 0.1);
+}
+
+input[type="file"].form-input {
+  padding: 10px;
+  border: 2px dashed #aec3b0;
+  background-color: #eff6e0;
+  cursor: pointer;
+}
+
+input[type="file"].form-input:hover {
+  border-color: #598392;
+  background-color: #e9f2d7;
+}
+
+.error-container {
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  display: block;
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-control.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+/* Modal footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 2px solid #eff6e0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+      margin: 0;
+      padding: 20px;
+      border-radius: 0;
+  }
+  
+  .header {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+      text-align: center;
+  }
+  
+  .table-container {
+      margin: 10px -20px;
+      border-radius: 0;
+      overflow-x: auto;
+  }
+  
+  td, th {
+      padding: 12px 16px;
+  }
+  
+  .modal-content {
+      margin: 16px;
+      padding: 20px;
+  }
+  
+  .action-cell {
+      flex-direction: column;
+      gap: 8px;
+  }
+}
