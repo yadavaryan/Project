@@ -1,0 +1,672 @@
+/* Main layout container with updated design inspired by Uber */
+.page-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1600px;
+  margin: 20px auto;
+  padding: 0 24px;
+  height: calc(100vh - 80px);
+}
+
+/* Form container styles - more minimal and modern */
+.create-ride-container {
+  flex: 1;
+  min-width: 400px;
+  max-width: 480px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0;
+}
+
+/* Map container styles - cleaner look */
+.map-side-container {
+  flex: 2;
+  position: relative;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.map-header {
+  padding: 16px 24px;
+  background-color: #000000;
+  color: #ffffff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.map-header h2 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.map-header h2::after {
+  display: none;
+}
+
+.map-content {
+  height: calc(100% - 150px);
+  background-color: #f5f5f5;
+}
+
+.map-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  padding: 16px 24px;
+  border-top: 1px solid #eaeaea;
+}
+
+.map-details .route-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.map-details .route-info span {
+  color: #000000;
+  font-weight: 500;
+}
+
+/* Form Section Headers */
+.create-ride-container h1 {
+  color: #000000;
+  padding: 24px 24px 16px;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.section {
+  background-color: #ffffff;
+  padding: 20px 24px;
+  border-radius: 0;
+  margin-bottom: 0;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.section:hover {
+  background-color: #f9f9f9;
+  box-shadow: none;
+}
+
+h2 {
+  color: #000000;
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0;
+}
+
+h2::after {
+  display: none;
+}
+
+/* Location Fields - Inspired by Uber's clean look */
+.form-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #6e6e6e;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Phone number verification section */
+.phone-input-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.phone-input-group input {
+  flex: 1;
+}
+
+.phone-input-group button {
+  padding: 14px 20px;
+  min-width: 100px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.phone-input-group button:hover {
+  background-color: #333333;
+}
+
+.patchdetails {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.patchdetails > .form-group {
+  width: calc(50% - 8px);
+}
+
+/* Stops Section - Styled like Uber with connection lines */
+.stops-section {
+  margin: 16px 0;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  position: relative;
+}
+
+.stops-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.stops-header h3 {
+  color: #000000;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.add-stop-btn {
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-stop-btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.stops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+/* Style for the vertical connection line between stops */
+.stops-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12px;
+  height: 100%;
+  width: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.stop-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+  animation: slideIn 0.3s ease-out;
+  background-color: #ffffff;
+}
+
+.stop-number {
+  width: 24px;
+  height: 24px;
+  background-color: #000000;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.stop-input-group {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+}
+
+.stop-input-group input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.stop-input-group input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.remove-stop-btn {
+  background-color: transparent;
+  color: #6e6e6e;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.remove-stop-btn:hover {
+  color: #000000;
+  background-color: #f0f0f0;
+}
+
+/* Radio selection container for vehicle types */
+.radio-selection-container {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.radio-group-container {
+  margin-bottom: 24px;
+}
+
+.radio-group-container h3 {
+  color: #000000;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0;
+}
+
+.radio-group-container h3::after {
+  display: none;
+}
+
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.radio-card {
+  position: relative;
+  min-width: 100px;
+  flex: 1;
+}
+
+.radio-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.radio-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-height: 60px;
+}
+
+.radio-card input[type="radio"]:checked + label .radio-card-content {
+  border-color: #000000;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.radio-card input[type="radio"]:hover + label .radio-card-content {
+  border-color: #000000;
+  transform: translateY(-2px);
+}
+
+.title {
+  font-weight: 500;
+  color: #000000;
+}
+
+/* Standard Radio Buttons */
+.radio-group {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding: 8px 0;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.radio-group label:hover {
+  background-color: #f5f5f5;
+}
+
+.radio-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #000000;
+}
+
+/* Date/Time Picker */
+input[type="datetime-local"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+input[type="datetime-local"]:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Ride Button */
+.book-ride-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 24px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.book-ride-btn:hover {
+  background-color: #333333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-ride-btn:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Error states */
+.form-group input.ng-invalid.ng-touched {
+  border-color: #ff4444;
+}
+
+.form-group input.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2);
+}
+
+/* Success states */
+.form-group input.ng-valid.ng-touched {
+  border-color: #00C851;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .page-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .create-ride-container {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+  }
+
+  .map-side-container {
+    height: 500px;
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 10px;
+  }
+
+  .create-ride-container {
+    min-width: unset;
+    padding: 0;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .phone-input-group {
+    flex-direction: column;
+  }
+
+  .phone-input-group button {
+    width: 100%;
+  }
+
+  .patchdetails {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .patchdetails > .form-group {
+    width: 100%;
+  }
+
+  .map-side-container {
+    height: 400px;
+  }
+}
+
+/* Modern scrollbar style */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional styles for payment options */
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.payment-option {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-option:hover {
+  border-color: #000000;
+  transform: translateY(-2px);
+}
+
+.payment-option.selected {
+  border-color: #000000;
+  background-color: #f9f9f9;
+}
+
+.payment-option-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.payment-option-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Confirmation screen */
+.confirmation-screen {
+  padding: 24px;
+  text-align: center;
+}
+
+.confirmation-screen h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.confirmation-check {
+  width: 64px;
+  height: 64px;
+  background-color: #00C851;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px auto;
+  color: white;
+  font-size: 1.8rem;
+}
+
+.ride-summary {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.summary-label {
+  color: #6e6e6e;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-weight: 600;
+}

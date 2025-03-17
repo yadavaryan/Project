@@ -1,0 +1,148 @@
+
+.navbar {
+  background: #000000;
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000000;
+  color: white;
+  padding: 1rem 2rem;
+  padding-bottom: 0;
+  padding-left: 2.8rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nav-item {
+  position: relative;
+  font-size: larger;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.nav-item:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: background 0.3s;
+  
+}
+
+.submenu a:hover {
+  background: #f8f9fa;
+}
+
+.active {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+.submenu .active {
+  background: #e9ecef;
+  color: #2c3e50;
+}
+
+.navbar {
+  background: #042b3b; /* Changed from black to darkest navy */
+  padding: 0.3rem 2rem;
+  color: #EFF6E0; /* Changed to lightest color for contrast */
+  box-shadow: 0 2px 4px rgba(1,22,30,0.2);
+}
+
+.heading {
+  background: #07212b ; /* Changed to dark navy */
+  color: #EFF6E0;
+  padding: 1rem 2rem;
+  padding-left: 2.8rem;
+  box-shadow: 0 2px 4px rgba(1,22,30,0.2);
+}
+
+.nav-link {
+  color: #EFF6E0; /* Lightest color for navigation text */
+}
+
+.nav-link:hover {
+  background: rgba(89,131,146,0.3); /* Using medium blue-grey with opacity */
+}
+
+.submenu {
+  background: #EFF6E0; /* Light background for dropdown */
+  box-shadow: 0 2px 8px rgba(1,22,30,0.15);
+}
+
+.submenu a {
+  color: #124559; /* Dark navy for dropdown text */
+}
+
+.submenu a:hover {
+  background: #AEC3B0; /* Muted sage green for hover state */
+}
+
+.active {
+  background: rgba(89,131,146,0.4); /* Medium blue-grey with opacity */
+}
+
+.submenu .active {
+  background: #AEC3B0;
+  color: #01161E;
+}
+

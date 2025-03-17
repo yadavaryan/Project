@@ -1,0 +1,144 @@
+
+<div class="form-container">
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="title mb-0">Pricing </h2>
+      <button type="button" class="btn btn-primary add-btn submit-button" (click)="openModal()">
+        Set Pricing
+      </button>
+    </div>
+
+  <div class="modal fade" id="pricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pricingModalLabel">Set Pricing</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="pricingForm">
+
+            <!-- Dropdown Section -->
+            <div class="dropdown-section">
+              <div class="form-group">
+                <label class="form-label">Country</label>
+                <select class="form-select" formControlName="country" id="countrySelect" [(ngModel)]="selectedCountry"
+                  (click)="oncountryselected()">
+                  <option value="">-- Select Country --</option>
+                  <option *ngFor="let country of countries" [value]="country.countryname">
+                    {{country.countryname}}
+                  </option>
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <select class="form-select" formControlName="city" [(ngModel)]="selectedCity">
+                  <option value="">-- Select City --</option>
+                  <option *ngFor="let city of allcity" [value]="city.city">
+                    {{city.city}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Type</label>
+                <select class="form-select" formControlName="type" [(ngModel)]="selectedTypeid" >
+                  <option value="" disabled>-- Select Vehicle --</option>
+                  <option [disabled]="!selectedCountry || !selectedCity" *ngFor="let Vehicle of allvehicle"
+                    [value]="Vehicle._id">
+                    {{Vehicle.vehicletype}}
+                  </option>
+                </select>
+
+              </div>
+            </div>
+
+            <!-- Form Fields Section -->
+            <div class="form-inputs-grid">
+              <div class="form-group">
+                <label class="form-label">Driver Profit</label>
+                <input type="number" class="form-input" formControlName="driverProfit">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Min. Fare</label>
+                <input type="number" class="form-input" formControlName="minFare">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Distance for Base Price</label>
+                <input type="number" class="form-input" formControlName="baseDistance">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Base Price</label>
+                <input type="number" class="form-input" formControlName="basePrice">
+
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Price Per Unit Distance</label>
+                <input type="number" class="form-input" formControlName="pricePerUnitDistance">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Price Per Unit Time (min)</label>
+                <input type="number" class="form-input" formControlName="pricePerUnitTime">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Max Space</label>
+                <input type="number" class="form-input" formControlName="maxSpace">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary save-btn submit-button" (click)="editing?updataingpricing():onSubmit()">Set Pricing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Data Table -->
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>City</th>
+          <th>Type</th>
+          <th>Driver Profit</th>
+          <th>Min Fare</th>
+          <th>Base Distance</th>
+          <th>Base Price</th>
+          <th>Price/Distance</th>
+          <th>Price/Time</th>
+          <th>Max Space</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of savedPricingData">
+          <td>{{data.country}}</td>
+          <td>{{data.city}}</td>
+          <td>{{data.vehicletype[0].vehicletype}}</td>
+          <td>{{data.driverProfit}}</td>
+          <td>{{data.minFare}}</td>
+          <td>{{data.baseDistance}}</td>
+          <td>{{data.basePrice}}</td>
+          <td>{{data.pricePerUnitDistance}}</td>
+          <td>{{data.pricePerUnitTime}}</td>
+          <td>{{data.maxSpace}}</td>
+          <td><button class="edit-button" (click)="updataingpricing(data.type)">edit</button></td>
+        </tr>
+        <tr *ngIf="savedPricingData.length === 0">
+          <td colspan="10" class="no-data">No configurations saved yet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

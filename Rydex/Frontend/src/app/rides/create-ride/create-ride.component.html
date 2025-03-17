@@ -1,0 +1,224 @@
+<div class="page-container">
+    <div class="create-ride-container">
+        <h1>Create Ride</h1>
+        
+        <form [formGroup]="rideForm" (ngSubmit)="bookRide()">
+          <!-- User Details Section -->
+          <div class="section user-details">
+            <h2>User Details</h2>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <div class="phone-input-group">
+                <input 
+                  id="phoneNumber"
+                  type="text"
+                  formControlName="phoneNumber"
+                  placeholder="Enter phone number"
+                  maxlength="10"
+                >
+                <button 
+                  type="button" 
+                  (click)="onPhoneNumberSubmit()"
+                  [disabled]="!rideForm.get('phoneNumber')?.valid"
+                >
+                  Verify
+                </button>
+              </div>
+            </div>
+            <div *ngIf="numbervalid" class="patchdetails">
+            <div class="form-group">
+                <label for="userName">Name</label>
+                <input 
+                id="userName"
+                type="text"
+                formControlName="userName"
+                placeholder="User name"
+                readonly
+              >
+            </div>
+      
+            <div class="form-group">
+              <label for="userEmail">Email</label>
+              <input 
+                id="userEmail"
+                type="email"
+                formControlName="userEmail"
+                placeholder="User email"
+                readonly
+              >
+            </div>
+            </div>
+          </div>
+      
+          <!-- Locations Section -->
+          <div *ngIf="numbervalid" class="section locations">
+            <h2>Ride Details</h2>
+            <div class="form-group">
+              <label for="pickupLocation">Pickup Location</label>
+              <input 
+                id="pickupLocation"
+                type="text"
+                formControlName="pickupLocation"
+                placeholder="Enter pickup location"
+                #pickup
+                (click)="initautocomplete()"
+              >
+            </div>
+      
+            <!-- Stops -->
+            <div class="stops-section" formArrayName="stops">
+              <div class="stops-header">
+                <h3>Stops</h3>
+                <button type="button" 
+                class="add-stop-btn"
+                (click)="addStop()"><i style="font-size: x-large;" class="fa-solid fa-circle-plus"></i></button>
+
+              </div>
+      
+              <div class="stops-list" *ngIf="stops.length > 0">
+                <div 
+                  *ngFor="let stop of stops.controls; let i=index" 
+                  [formGroupName]="i"
+                  class="stop-item"
+                  
+                >
+                  <div class="stop-number">{{i + 1}}</div>
+                  <div class="stop-input-group">
+                    <input 
+                      type="text"
+                      formControlName="location"
+                      placeholder="Enter stop location"
+                      #stopInput
+                      (click)="autocompleteformarray(i)"
+                    >
+                    <button 
+                      type="button" 
+                      class="remove-stop-btn"
+                      (click)="removeStop(i)"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-group">
+              <label for="dropLocation">Drop-off Location</label>
+              <input 
+                id="dropLocation"
+                type="text"
+                formControlName="dropLocation"
+                placeholder="Enter drop-off location"
+                #drop
+                (click)="initdrop()"
+              >
+            </div>
+          </div>
+
+          <div *ngIf="numbervalid" class="radio-selection-container">
+            <div class="radio-group-container">
+              <h3>Select Vehicle Type</h3>
+              <div class="radio-options">
+                <div class="radio-card" *ngFor="let vehicle of vehicles ">
+                  <input 
+                    type="radio" 
+                    name="vehicleType"
+                    value="vehicle._id"
+                    (change)="updateFare(vehicle._id)"
+                  >
+                  <label>
+                    <div class="radio-card-content">
+                      <span class="title">{{vehicle.vehicletype}}</span>
+                      <div class="title" style="color: #124559; margin-left: 2px;" *ngIf="estimatedDistance">Fare:<span class="title">{{calculatefare(vehicle._id)}}</span></div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      
+          <!-- Payment Section -->
+          <div *ngIf="numbervalid" class="section payment">
+            <h2>Payment Method</h2>
+            <div class="radio-group">
+              <label>
+                <input 
+                  type="radio"
+                  formControlName="paymentMethod"
+                  value="cash"
+                > Cash
+              </label>
+              <label>
+                <input 
+                  type="radio"
+                  formControlName="paymentMethod"
+                  value="card"
+                > Card
+              </label>
+            </div>
+          </div>
+      
+          <!-- Booking Type Section -->
+          <div *ngIf="numbervalid" class="section booking-type">
+            <h2>Booking Type</h2>
+            <div class="radio-group">
+              <label>
+                <input 
+                  type="radio"
+                  formControlName="bookingType"
+                  value="now"
+                  (change)="onBookingTypeChange()"
+                > Now
+              </label>
+              <label>
+                <input 
+                  type="radio"
+                  formControlName="bookingType"
+                  value="schedule"
+                  (change)="onBookingTypeChange()"
+                > Schedule
+              </label>
+            </div>
+            
+            <div class="form-group" *ngIf="rideForm.get('bookingType')?.value === 'schedule'">
+              <label for="scheduleDateTime">Select Date & Time</label>
+              <input 
+                id="scheduleDateTime"
+                type="datetime-local"
+                formControlName="scheduleDateTime"
+              >
+            </div>
+          </div>
+      
+          <!-- Submit Button -->
+          <button *ngIf="numbervalid"
+            type="submit"
+            class="book-ride-btn"
+            [disabled]="!rideForm.valid || !estimatedprice"
+          >
+            Book Ride
+          </button>
+        </form>
+      </div>
+      <div class="map-side-container">
+        <div class="map-header">
+          <h2>Route Overview</h2>
+        </div>
+        <div class="map-content" id="map">
+          <!-- Google Maps will be initialized here -->
+        </div>
+        <div class="map-details">
+          <div class="route-info">
+            <span>Total Distance: {{estimatedDistance}}</span>
+            <span>Aprx. Price: ${{estimatedprice}}</span>
+            <span>Estimated Time: {{estimatedTime}}</span>
+          </div>
+          <div class="route-info" *ngIf="stops.length > 0">
+            <span>Total Stops: {{stops.length}}</span>
+          </div>
+        </div>
+      </div>
+</div>
+

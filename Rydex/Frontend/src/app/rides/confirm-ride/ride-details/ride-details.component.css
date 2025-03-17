@@ -1,0 +1,177 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(1, 22, 30, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-container {
+    background-color: #fbfff0e0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-header {
+    background-color: #124559;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .close-button:hover {
+    background-color: #01161e;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .status-fare-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .status-scheduled {
+    background-color: #aec3b0;
+    color: #124559;
+  }
+
+  .status-completed {
+    background-color: #598392;
+    color: white;
+  }
+
+  .status-cancelled {
+    background-color: #ff4444;
+    color: white;
+  }
+
+  .fare {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #124559;
+  }
+
+  .details-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #124559;
+    margin-bottom: 1rem;
+  }
+
+  .detail-item i {
+    color: #598392;
+    width: 20px;
+  }
+
+  .locations-container {
+    border-left: 2px dashed #aec3b0;
+    margin-left: 9px;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .location-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label {
+    font-size: 0.875rem;
+    color: #598392;
+  }
+
+  .value {
+    color: #124559;
+    font-weight: 500;
+  }
+
+  .divider {
+    height: 1.5rem;
+    margin-left: 9px;
+  }
+
+  .additional-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #aec3b0;
+  }
+  .stops-connector {
+    position: absolute;
+    left: 11px;
+    width: 2px;
+    background-color: #aec3b0;
+    height: 2rem;
+  }
+
+  .stop-item {
+    margin: 1rem 0;
+  }
+
+  .stop-time {
+    font-size: 0.75rem;
+    color: #598392;
+    margin-top: 0.25rem;
+  }
+
+  .map-container {
+    height: 200px;
+    width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }

@@ -1,0 +1,258 @@
+:root {
+  --primary-color: #598392;      /* Medium blue-grey for primary actions */
+  --primary-hover: #124559;      /* Dark navy for hover states */
+  --background-color: #EFF6E0;   /* Light mint for background */
+  --surface-color: #ffffff;      /* Keep white for surface/cards */
+  --border-color: #AEC3B0;      /* Muted sage for borders */
+  --text-primary: #01161E;      /* Darkest navy for primary text */
+  --text-secondary: #124559;    /* Dark navy for secondary text */
+  --shadow-sm: 0 1px 2px 0 rgba(1, 22, 30, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(1, 22, 30, 0.15);
+}
+
+/* Base Layout */
+.page-container {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header-section {
+  margin-bottom: 2rem;
+}
+
+.title {
+  color: #01161E;
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.main-controls-section {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background-color: #f1e5be2b;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(1, 22, 30, 0.1);
+  border: 1px solid #AEC3B0;
+}
+
+.primary-controls {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+}
+
+/* Cities List */
+.cities-list {
+  width: 330px;
+  border-left: 1px solid #AEC3B0;
+  padding-left: 1.5rem;
+}
+
+.cities-header {
+  color: #124559;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.cities-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Form Controls */
+label {
+  color: #124559;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.country-select,
+.search-input {
+  padding: 0.625rem 1rem;
+  border: 1px solid #AEC3B0;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #01161E;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.country-select:focus,
+.search-input:focus {
+  outline: none;
+  border-color: #598392;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Buttons */
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  background-color: #598392;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  height: 42px;
+  white-space: nowrap;
+  margin-top: 28px;
+}
+
+.primary-button:hover {
+  background-color: #124559;
+}
+
+.button-icon {
+  margin-right: 0.5rem;
+}
+
+.city-button {
+  padding: 0.5rem 1rem;
+  background-color: #f1f5f9;
+  border: 1px solid #AEC3B0;
+  border-radius: 0.375rem;
+  color: #01161E;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.city-button:hover {
+  background-color: #598392;
+  color: white;
+  border-color: #598392;
+}
+
+/* Map Container */
+.map-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(1, 22, 30, 0.15);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Scrollbar Styling */
+.cities-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cities-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.cities-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.cities-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* Form Controls */
+.country-select,
+.search-input {
+  border: 1px solid #AEC3B0;
+  color: #01161E;
+}
+
+.country-select:focus,
+.search-input:focus {
+  border-color: #598392;
+  box-shadow: 0 0 0 3px rgba(89, 131, 146, 0.1);
+}
+
+
+.city-button {
+  background-color: #EFF6E0;  /* Light mint background */
+  border: 1px solid #AEC3B0;
+  color: #01161E;
+}
+
+.city-button:hover {
+  background-color: #598392;
+  color: #EFF6E0;  /* Light mint for text on hover */
+  border-color: #598392;
+}
+
+/* Scrollbar Styling */
+.cities-scroll::-webkit-scrollbar-track {
+  background: #EFF6E0;  /* Light mint for scrollbar track */
+}
+
+.cities-scroll::-webkit-scrollbar-thumb {
+  background: #AEC3B0;  /* Muted sage for scrollbar thumb */
+}
+
+.cities-scroll::-webkit-scrollbar-thumb:hover {
+  background: #598392;  /* Medium blue-grey for scrollbar hover */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-controls-section {
+    flex-direction: column;
+  }
+
+  .cities-list {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #AEC3B0;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .control-group {
+    width: 100%;
+  }
+
+  .cities-scroll {
+    max-height: 160px;
+  }
+}

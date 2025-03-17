@@ -1,0 +1,46 @@
+<div class="main" style="margin: 1rem auto ;">
+    <h2>Vehicle Type</h2>
+    <div class="formContainer">
+        <form id="vehicletype-form" [formGroup]="reactiveForm" (ngSubmit)="onFormSubmit()">
+
+            <div class="form-group">
+                <label class="fs-4" for="vehicletype">Vehicle Type:</label>
+                <input type="text" id="vehicletype" required placeholder="Enter vehicle type"
+                    formControlName="vehicletype">
+            </div>
+
+            <div class="form-group">
+                <label class="fs-4">Vehicle Icon:</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" formControlName="vehicleicon" id="vehicleicon"
+                        name="vehicleicon" accept="image/*" (change)="uploadimage($event)">
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="table-container">
+            <table class="vehicle-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Vehicle Type</th>
+                        <th>Vehicle Icon</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehicle of vehicle; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{vehicle.vehicletype}}</td>
+                        <td>
+                            <img [src]="'http://localhost:8000/'+vehicle.vehicleicon" alt="Vehicle Icon" class="vehicle-icon">
+                        </td>
+                        <td>
+                            <button class="action-btn edit-btn" (click)="onUpdateform(vehicle._id)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

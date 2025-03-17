@@ -1,0 +1,106 @@
+<div class="rides-container">
+    <div class="table-container">
+        <table class="rides-table">
+        <thead>
+            <tr>
+            <th title="Request ID">
+                <span class="header-content" >
+                🆔
+                </span>
+            </th>
+            <th title="User Name">
+                <span class="header-content" >
+                👤
+                </span>
+            </th>
+            <th title="Phone Number">
+                <span class="header-content">
+                📱
+                </span>
+            </th>
+            <th title="Pickup Time">
+                <span class="header-content" >
+                🕒
+                </span>
+            </th>
+            <th title="Pickup Location">
+                <span class="header-content" >
+                📍
+                </span>
+            </th>
+            <th title="Dropoff Location">
+                <span class="header-content" >
+                🏁
+                </span>
+            </th>
+            <th title="Vehicle Type">
+                <span class="header-content" >
+                🚗
+                </span>
+            </th>
+            <th title="Status">
+                <span class="header-content">
+                🔄
+                </span>
+            </th>
+            <th>
+                <span class="header-content">
+                    🔄 Status
+                </span>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ride of rides" (click)="onrideclick(ride)">
+            <td>{{ride._id | slice: 0:8}} </td>
+            <td>{{ride.users[0].name}}</td>
+            <td>{{ride.users[0].phone}}</td>
+            <td>
+                <div class="time-cell">
+                <span class="time">{{ ride.scheduleAt ? (ride.scheduleAt | date: 'short') : 'Schedule for Now' }}</span>
+                </div>
+            </td>
+            <td class="address-cell" [title]="ride.pickupAddress">
+                {{ride.pickup}}
+            </td>
+            <td class="address-cell" [title]="ride.dropoffAddress">
+                {{ride.drop}}
+            </td>
+            <td>{{ride.vehicle[0].vehicletype}}</td>
+            <td>
+                <span class="status-badge" [ngClass]="{
+                'status-assigned': !ride.status || ride.status === 'Assigned',
+                'status-accepted': ride.status === 'Accepted',
+                'status-arrived': ride.status === 'Arrived',
+                'status-picked': ride.status === 'Picked',
+                'status-started': ride.status === 'Started',
+                'status-completed': ride.status === 'Completed',
+                }">
+                {{ ride.status || 'Assigned' }}
+                </span>
+            </td>
+            <td *ngIf="ride.status != 'Assigned'">
+                <select class="status-select"  (click)="onDropdownClick($event)" (change)="updatestatus(selectedstatus,ride._id)" [(ngModel)]="selectedstatus">
+                    <option value="" disabled>Select Status</option>
+                    <option value="Arrived">Arrived</option>
+                    <option value="Picked">Picked</option>
+                    <option value="Started">Started</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </td>
+            <td *ngIf="ride.status == 'Assigned'">
+                <div class="action-buttons" (click)="onDropdownClick($event)">
+                <button class="btn accept-btn" (click)="accept($event,ride._id)">Accept</button>
+                <button class="btn reject-btn" (click)="reject($event,ride.assignoption,ride._id)">Reject</button>
+                <div class="countdown-timer" *ngIf="ride.status === 'Assigned'" [ngClass]="{'low-time': ride.time < 10}">
+                    <span class="timer-value">{{ride.time}}</span>
+                    <span class="timer-label">sec</span>
+                </div>                
+                </div>
+        </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+<app-ride-details [rideDetails]="selectedride" [isOpen]="isopen" (onClose)="onclose()"> </app-ride-details>

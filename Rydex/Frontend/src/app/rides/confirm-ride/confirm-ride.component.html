@@ -1,0 +1,208 @@
+<div class="rides-container">
+    <header class="page-header">
+      <h1>Confirmed Rides</h1>
+      <div class="search-bar">
+        <input 
+          type="text" 
+          placeholder="Search rides..." 
+          [(ngModel)]="searchquery"
+        >
+      </div>
+    </header>
+
+    <div class="filter-container">
+      <div class="dropdown-wrapper">
+        <select 
+          [(ngModel)]="selectedvehicletype" 
+          class="filter-dropdown"
+          [ngClass]="{'has-value': selectedvehicletype}"
+        >
+          <option value="">Select Vehicle Type</option>
+          <option *ngFor="let type of vehicleTypes" [value]="type._id">
+            {{type.vehicletype}}
+          </option>
+        </select>
+      </div>
+      
+      <div class="dropdown-wrapper">
+        <select 
+          [(ngModel)]="selectedstatus" 
+          class="filter-dropdown"
+          [ngClass]="{'has-value': selectedstatus}"
+        >
+          <option value="">Select Status</option>
+          <option *ngFor="let status of statusList" [value]="status">
+            {{status}}
+          </option>
+        </select>
+      </div>
+    
+      <button 
+        class="apply-filter-btn" 
+        (click)="applyfilters()"
+        [disabled]="!selectedvehicletype && !selectedstatus"
+      >
+        Apply Filters
+      </button>
+    </div>
+  
+    <div class="table-container">
+      <table class="rides-table">
+        <thead>
+          <tr>
+            <th title="Request ID">
+              <span class="header-content" >
+                🆔
+              </span>
+            </th>
+            <th title="User Name">
+              <span class="header-content" >
+                👤
+              </span>
+            </th>
+            <th title="Phone Number">
+              <span class="header-content">
+                📱
+              </span>
+            </th>
+            <th title="Pickup Time">
+              <span class="header-content" >
+                🕒
+              </span>
+            </th>
+            <th title="Pickup Location">
+              <span class="header-content" >
+                📍
+              </span>
+            </th>
+            <th title="Dropoff Location">
+              <span class="header-content" >
+                🏁
+              </span>
+            </th>
+            <th title="Vehicle Type">
+              <span class="header-content" >
+                🚗
+              </span>
+            </th>
+            <th title="Status">
+              <span class="header-content">
+                🔄
+              </span>
+            </th>
+            <th title="Assign Driver">
+              <span class="header-content">
+                👨‍✈️
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ride of rides" (click)="onrideclick(ride)">
+            <td>{{ride._id | slice: 0:8}} </td>
+            <td>{{ride.users[0].name}}</td>
+            <td>{{ride.users[0].phone}}</td>
+            <td>
+              <div class="time-cell">
+                <span class="time">{{ ride.scheduleAt ? (ride.scheduleAt | date: 'short') : 'Schedule for Now' }}</span>
+              </div>
+            </td>
+            <td class="address-cell" [title]="ride.pickupAddress">
+              {{ride.pickup}}
+            </td>
+            <td class="address-cell" [title]="ride.dropoffAddress">
+              {{ride.drop}}
+            </td>
+            <td>{{ride.vehicle[0].vehicletype}}</td>
+            <td>
+              <span class="status-badge" [ngClass]="{
+                'status-assigned': ride.status === 'Assigned',
+                'status-accepted': ride.status === 'Accepted',
+                'status-arrived': ride.status === 'Arrived',
+                'status-picked': ride.status === 'Picked',
+                'status-started': ride.status === 'Started',
+                'status-completed': ride.status === 'Completed',
+                'status-pending': !ride.status || ride.status === 'Pending'
+              }">
+                {{ ride.status || 'Pending' }}
+              </span>
+            </td>
+            <td>
+              <button *ngIf="!ride.driver.length  && ride.status != 'No-Driver-Available' "
+                class="assign-btn"
+                [class.assigned]="ride.isDriverAssigned"
+                (click)="assignDriver(ride.vehicle[0]._id,ride._id)"
+              >Assign
+              </button>
+              <button *ngIf="ride.status == 'No-Driver-Available'"
+                class="assign-btn"
+                [class.assigned]="ride.isDriverAssigned"
+                (click)="assignDriver(ride.vehicle[0]._id,ride._id)"
+              >Reassign</button>
+              <span *ngIf="ride.driver.length && ride.status != 'No-Driver-Available'">{{ride.driver[0].name}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-overlay" *ngIf="isdriverModalOpen">
+      <div class="modal-container">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2>Select Driver</h2>
+          <button class="close-btn" (click)="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <!-- Drivers List -->
+        <div class="drivers-list">
+          <div *ngFor="let driver of drivers" class="driver-item">
+            <label class="driver-label">
+              <input 
+                type="radio" 
+                [name]="'driver'" 
+                [value]="driver._id"
+                [(ngModel)]="selectedDriver"
+              >
+              <div class="driver-info">
+                <div class="driver-primary">
+                  <span class="driver-name">{{driver.name}}</span>
+                  <span class="driver-status" [class.available]="driver.ischecked">
+                    {{driver.ischecked ? 'Available' : 'Busy'}}
+                  </span>
+                </div>
+                <div class="driver-secondary">
+                  <span class="driver-email">
+                    <i class="fas fa-envelope"></i> {{driver.email}}
+                  </span>
+                  <span class="driver-phone">
+                    <i class="fas fa-phone"></i> {{driver.phone}}
+                  </span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+    
+        <!-- Action Buttons -->
+        <div class="modal-footer">
+          <button 
+            class="assign-selected-btn" 
+            [disabled]="!selectedDriver"
+            (click)="assignSelectedDriver()"
+          >
+            <i class="fas fa-user-check"></i>
+            Assign Selected Driver
+          </button>
+          <button 
+            class="assign-random-btn"
+            (click)="assignRandomDriver()"
+          >
+            <i class="fas fa-random"></i>
+            Assign Random Driver
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-ride-details [rideDetails]="selectedride" [isOpen]="isopen" (onClose)="onclose()"> </app-ride-details>

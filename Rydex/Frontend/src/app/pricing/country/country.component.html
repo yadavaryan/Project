@@ -1,0 +1,123 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="title mb-0">Country</h2>
+      <button type="button" class="btn btn-primary add-btn" (click)="openModal()">
+        <i class="fas fa-plus-circle me-2"></i>Add Country
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade " id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="countryModalLabel">Add New Country</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="countryForm">
+              <!-- Country Name -->
+              <div class="form-group mb-3">
+                <label for="countryName" class="form-label">Country Name</label>
+                <input 
+                  type="text" 
+                  class="form-control custom-input" 
+                  id="countryName"
+                  formControlName="name"
+                  placeholder="Enter country name"
+                >
+              </div>
+              <button type="button" class="btn btn-primary save-btn" (click)="fetchCountry()" style="border-radius: 22px; position: relative; left: 35%;">Get Details</button>
+              <div *ngIf="flags" class="form-group mb-3">
+                <label for="countryFlag" class="form-label">Country Flag</label>
+                <img [src]="flags"  style="width: 70px; height: 50px; border-radius: 5px; display: flex; flex-direction: column; margin: 2px;">
+              </div>
+              <!-- Currency -->
+              <div class="form-group mb-3">
+                <label for="currency" class="form-label">Currency</label>
+                <input 
+                  type="text" 
+                  class="form-control custom-input" 
+                  id="currency"
+                  formControlName="currency"
+                  placeholder="currency"
+                  readonly
+                >
+              </div>
+
+              <!-- Country Code -->
+              <div class="form-group mb-3">
+                <label for="countryCode" class="form-label">Country Code</label>
+                <input 
+                  type="text" 
+                  class="form-control custom-input" 
+                  id="countryCode"
+                  formControlName="countryCode"
+                  placeholder="country code"
+                  readonly
+                >
+              </div>
+
+              <!-- Calling Code -->
+              <div class="form-group mb-3">
+                <label for="callingCode" class="form-label">Calling Code</label>
+                <div class="input-group">
+                  <span class="input-group-text">+</span>
+                  <input 
+                    type="text" 
+                    class="form-control custom-input" 
+                    id="callingCode"
+                    formControlName="callingCode"
+                    placeholder="calling code"
+                    readonly
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary save-btn" (click)="OnAddcountry()" >Add Country</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="text" id="searchquery" placeholder="search" [(ngModel)]="searchquery">
+    <div class="country-list-container">
+      <div class="table-responsive">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Flag</th>
+                      <th>Country Name</th>
+                      <th>Country Code</th>
+                      <th>Currency</th>
+                      <th>Calling Code</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let country of countries | countrysearch:searchquery; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                          <img [src]="country.flags" alt="flag" style="width: 40px; height: 30px; border-radius: 4px;">
+                      </td>
+                      <td>{{ country.countryname }}</td>
+                      <td>{{ country.countrycode }}</td>
+                      <td>{{ country.currency }}</td>
+                      <td>+{{ country.callingcode }}</td>
+                      
+                  </tr>
+                  <tr *ngIf="countries.length === 0">
+                      <td colspan="6" class="text-center py-4 text-muted">
+                          No countries added yet. Click the 'Add Country' button to get started.
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+
+
+  </div>

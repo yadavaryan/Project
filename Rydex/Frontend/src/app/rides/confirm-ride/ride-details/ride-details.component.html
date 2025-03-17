@@ -1,0 +1,81 @@
+<div *ngIf="isOpen" class="modal-overlay">
+    <div class="modal-container">
+      <!-- Header -->
+      <div class="modal-header">
+        <h2>Ride Details</h2>
+        <button class="close-button" (click)="onClose.emit()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="modal-content">
+        <div class="status-fare-container">
+          <span class="fare">${{rideDetails.fare}}</span>
+        </div>
+
+        <div #mapContainer class="map-container"></div>
+
+        <!-- Time and Location Details -->
+        <div class="details-card">
+          <div class="detail-item">
+            <i class="fas fa-calendar"></i>
+            <span>{{ rideDetails.scheduleAt ? (rideDetails.scheduleAt | date: 'short') : 'Schedule for Now' }}</span>
+          </div>
+          
+          <!-- Locations -->
+          <div class="locations-container">
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="location-details">
+                <span class="label">Pickup</span>
+                <span class="value">{{rideDetails.pickup}}</span>
+              </div>
+            </div>
+            
+
+            <ng-container *ngIf="rideDetails.stop && rideDetails.stop.length > 0">
+                <div class="stops-connector"></div>
+                <div *ngFor="let stop of rideDetails.stop" class="detail-item stop-item">
+                  <div class="location-marker stop">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                  <div class="location-details">
+                    <span class="label">Stop</span>
+                    <span class="value">{{stop}}</span>
+                  </div>
+                </div>
+                <div class="stops-connector"></div>
+              </ng-container>
+            
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="location-details">
+                <span class="label">Drop-off</span>
+                <span class="value">{{rideDetails.drop}}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Info -->
+          <div class="additional-info">
+            <div class="detail-item">
+                <img [src]="'http://localhost:8000/'+ rideDetails.users[0].profile" alt="" style="height: 65px; width: 65px; border-radius: 60px; margin-left: 8px;">
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-user"></i>
+              <span>{{rideDetails.users[0].name}}</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-route"></i>
+              <span>{{rideDetails.distance}}</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-clock"></i>
+              <span>{{rideDetails.duration}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

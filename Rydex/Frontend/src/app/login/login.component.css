@@ -1,0 +1,142 @@
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f3e9;
+    padding: 20px;
+  }
+
+  .login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(1, 22, 30, 0.1);
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .login-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .login-header h1 {
+    color: #124559;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .login-header p {
+    color: #598392;
+    font-size: 16px;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  label {
+    color: #01161E;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 12px 16px;
+    border: 2px solid #AEC3B0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #124559;
+    outline: none;
+  }
+
+  input.error {
+    border-color: #ff4646;
+  }
+
+  .error-message {
+    color: #ff4646;
+    font-size: 12px;
+  }
+
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #598392;
+    cursor: pointer;
+  }
+
+  .forgot-password {
+    color: #124559;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9em;
+  }
+
+  button {
+    background-color: #124559;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #01161E;
+  }
+
+  button:disabled {
+    background-color: #AEC3B0;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 480px) {
+    .login-box {
+      padding: 24px;
+    }
+
+    .login-header h1 {
+      font-size: 24px;
+    }
+
+    .form-footer {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+  }

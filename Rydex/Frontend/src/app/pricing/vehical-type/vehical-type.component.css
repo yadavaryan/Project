@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    padding: 20px;
+}
+
+.main {
+    background: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgb(1 22 30 / 70%) !important;
+    width: 45%;
+   
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eee;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.form-group1 {
+    display: flex;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+input[type="text"] {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+
+.selected-file-name {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-control{
+    padding: 0.8rem 0.5rem;
+}
+
+button {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 1rem 3.5rem;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+}
+
+button:hover {
+    background: #357abd;
+    transform: translateY(-2px);
+}
+
+
+.table-container {
+    margin-top: 2rem;
+    overflow-x: auto;
+}
+
+.vehicle-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-table th,
+.vehicle-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.vehicle-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+}
+
+.vehicle-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.vehicle-icon {
+    width: 100px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.edit-btn {
+    background: #4a90e2;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+/* Modify your existing .main class to accommodate the table */
+.main {
+    background: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Increased from 45% to accommodate table */
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .vehicle-table th,
+    .vehicle-table td {
+        padding: 0.75rem;
+    }
+    
+    .action-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 1.5rem;
+    }
+}
+
+body {
+    background-color: #EFF6E0; /* Light mint background */
+  }
+  
+  .main {
+    background: white;
+    box-shadow: 0 4px 6px rgba(1,22,30,0.1);
+  }
+  
+  h2 {
+    color: #124559; /* Dark navy for headers */
+    border-bottom: 2px solid #AEC3B0; /* Muted sage green for borders */
+  }
+  
+  label {
+    color: #124559; /* Dark navy for labels */
+  }
+  
+  input[type="text"] {
+    border: 2px solid #AEC3B0;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #598392; /* Medium blue-grey for focus state */
+  }
+  
+  button {
+    background: #598392; /* Medium blue-grey for buttons */
+    color: #EFF6E0;
+  }
+  
+  button:hover {
+    background: #124559; /* Dark navy for button hover */
+  }
+  
+  .vehicle-table th {
+    background-color: #EFF6E0; /* Light mint for table headers */
+    color: #124559;
+  }
+  
+  .vehicle-table tr:hover {
+    background-color: #EFF6E0;
+  }
+  
+  .edit-btn {
+    background: #598392; /* Medium blue-grey for edit button */
+  }
+  
+  .delete-btn {
+    background: #124559; /* Dark navy for delete button */
+  }

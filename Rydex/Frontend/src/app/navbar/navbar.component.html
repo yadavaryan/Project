@@ -1,0 +1,42 @@
+<body>
+    <div class="heading">
+        <h3 class="mb-0">Eber Admin</h3>
+        <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;" (click)="logout()"></i>    
+    </div>
+    <nav class="navbar">
+        <div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <span class="nav-link" >Rides</span>
+                    <ul class="submenu">
+                        <li><a routerLink="/rides/create" routerLinkActive="active">Create Ride</a></li>
+                        <li><a routerLink="/rides/confirm" routerLinkActive="active">Confirmed Rides</a></li>
+                        <li><a routerLink="/rides/history" routerLinkActive="active">Ride History</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/users" routerLinkActive="active" class="nav-link">Users</a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Drivers</span>
+                    <ul class="submenu">
+                        <li><a routerLink="/driver/list" routerLinkActive="active">List</a></li>
+                        <li><a routerLink="/driver/running" routerLinkActive="active">Running Requests</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Pricing</span>
+                    <ul class="submenu">
+                        <li><a routerLink="/pricing/country" routerLinkActive="active">Country</a></li>
+                        <li><a routerLink="/pricing/city" routerLinkActive="active">City</a></li>
+                        <li><a routerLink="/pricing/vehicletype" routerLinkActive="active">Vehicle Type</a></li>
+                        <li><a routerLink="/pricing/vehiclepricing" routerLinkActive="active">Vehicle Pricing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/settings" routerLinkActive="active" class="nav-link">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>

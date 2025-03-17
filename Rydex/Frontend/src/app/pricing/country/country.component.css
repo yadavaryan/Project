@@ -1,0 +1,217 @@
+/* .title {
+    color: #2c3e50;
+    font-weight: 600;
+  }
+
+  .add-btn {
+    padding: 0.625rem 1.25rem;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .add-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #eef2f7;
+    padding: 1.5rem;
+  }
+
+  .modal-footer {
+    border-top: 1px solid #eef2f7;
+    padding: 1.5rem;
+  }
+
+  .custom-input {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 0.75rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .custom-input:focus {
+    border-color: #4c6fff;
+    box-shadow: 0 0 0 0.2rem rgba(76,111,255,0.1);
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-right: none;
+  }
+
+  .country-list-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.table th {
+    font-weight: 600;
+    color: #2c3e50;
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+.table td {
+    vertical-align: middle;
+    padding: 0.75rem 1rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+} */
+
+
+.title {
+  color: #124559;  /* Dark navy for important headers */
+  font-weight: 600;
+}
+
+.add-btn {
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  border-radius: 8px;
+  background-color: #598392;  /* Medium blue-grey for primary actions */
+  color: #EFF6E0;  /* Light mint for button text */
+  border: none;
+  box-shadow: 0 2px 4px rgba(1,22,30,0.1);
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #124559;  /* Dark navy for hover state */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(1,22,30,0.15);
+}
+
+.modal-content {
+    /* Light mint background */
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(1,22,30,0.1);
+}
+
+.modal-header {
+  border-bottom: 1px solid #AEC3B0;  /* Muted sage for borders */
+  padding: 1.5rem;
+  background-color: #598392;  /* Medium blue-grey header */
+  color: #EFF6E0;  /* Light mint text */
+}
+
+.modal-footer {
+  border-top: 1px solid #AEC3B0;  /* Muted sage for borders */
+  padding: 1.5rem;
+ /* Light mint background */
+}
+
+#searchquery {
+  padding: 0.75rem 1rem;
+  border: 2px solid #AEC3B0;  /* Muted sage for border */
+  border-radius: 8px;
+  width: 300px;
+  margin: 1rem 0;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white;
+  color: #124559;  /* Dark navy for text */
+}
+
+#searchquery::placeholder {
+  color: #AEC3B0;  /* Muted sage for placeholder text */
+}
+
+#searchquery:focus {
+  outline: none;
+  border-color: #598392;  /* Medium blue-grey for focus state */
+  box-shadow: 0 0 0 0.2rem rgba(89,131,146,0.1);
+}
+
+/* Optional: Add a search icon */
+#searchquery {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23AEC3B0" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+}
+
+.custom-input {
+  border-radius: 8px;
+  border: 2px solid #AEC3B0;  /* Muted sage for input borders */
+  padding: 0.75rem;
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #598392;  /* Medium blue-grey for focus state */
+  box-shadow: 0 0 0 0.2rem rgba(89,131,146,0.1);
+}
+
+.input-group-text {
+  background-color: #EFF6E0;  /* Light mint for input group */
+  border: 2px solid #AEC3B0;  /* Muted sage for borders */
+  border-right: none;
+  color: #124559;  /* Dark navy text */
+}
+
+.country-list-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(1,22,30,0.05);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid #AEC3B0;  /* Muted sage border */
+}
+
+.table th {
+  font-weight: 600;
+  color: #124559;  /* Dark navy for header text */
+  background-color: #EFF6E0;  /* Light mint for header background */
+  padding: 1rem;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+  color: #124559;  /* Dark navy for cell text */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #EFF6E0;  /* Light mint for hover state */
+  transition: background-color 0.3s ease;
+}
+
+/* Additional styles for modal title and save button */
+.modal-title {
+  color: #EFF6E0;  /* Light mint for modal title */
+}
+
+.save-btn {
+  background-color: #598392;  /* Medium blue-grey for save button */
+  color: #EFF6E0;  /* Light mint for button text */
+  border: none;
+}
+
+.save-btn:hover {
+  background-color: #124559;  /* Dark navy for hover state */
+}
+
+/* Style for form labels */
+.form-label {
+  color: #124559;  /* Dark navy for labels */
+}

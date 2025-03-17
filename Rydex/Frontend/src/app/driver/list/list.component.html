@@ -1,0 +1,178 @@
+<!-- driver-management.component.html -->
+<div class="container">
+    <div class="header">
+      <h2>Driver Management</h2>
+      <button class="btn btn-primary" (click)="openModal()">
+        Add Driver
+      </button>
+    </div>
+    <div class="searchinput">
+      <input type="text" id="searchquery" [(ngModel)]="searchquery" (input)="getdrivers()">
+    </div>
+    <!-- Drivers Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th (click)="onclicksorting('name')">Name <i class="fa-solid fa-sort" style="color: #ffffff;"></i></th>
+            <th (click)="onclicksorting('email')">Email <i class="fa-solid fa-sort" style="color: #ffffff;"></i></th>
+            <th>Country</th>
+            <th>City</th>
+            <th (click)="onclicksorting('phone')">Phone<i class="fa-solid fa-sort" style="color: #ffffff;"></i></th>
+            <th>ServiceType</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let driver of drivers">
+            <td><img [src]="'http://localhost:8000/'+ driver.profile" alt=""
+                style="height: 90px; width: 90px; border-radius: 60px;"></td>
+            <td>{{driver.name}}</td>
+            <td>{{driver.email}}</td>
+            <td>{{driver.country}}</td>
+            <td>{{driver.city}}</td>
+            <td>{{driver.phone}}</td>
+            <td>{{driver.services[0]?.vehicletype?driver.services[0]?.vehicletype:"Not Assigned"}}</td>
+              <td>
+                <div class="toggle-container">
+                  <label class="switch my-2">
+                    <input type="checkbox" [checked]="driver.ischecked"
+                        (change)="toggleSwitch(driver.ischecked,driver._id)">
+                    <span class="slider"></span>
+                </label>
+                </div>
+              </td>
+            <td class="action-cell">
+              <button class="edit-button" (click)="editDriver(driver)">edit</button>
+              <button class="edit-button" (click)="deleteDriver(driver._id)">delete</button>
+              <button class="edit-button" [disabled]="!driver.ischecked" (click)="servicetype(driver._id)">service</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Modal -->
+    <div *ngIf="isModalOpen" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>{{isEditing ? 'Edit Driver' : 'Add New Driver'}}</h2>
+        </div>
+  
+        <form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="form-label">Driver Profile</label>
+            <input type="file" formControlName="profile" class="form-input" accept="image/*"
+              (change)="uploadimage($event)">
+          </div>
+  
+          <div class="form-group">
+            <label class="form-label">Driver Name</label>
+            <input type="text" formControlName="name" class="form-input">
+          </div>
+          <div  class="error-container" *ngIf="driverForm.get('name')?.invalid && 
+                (driverForm.get('name')?.dirty || 
+                 driverForm.get('name')?.touched)">
+          <small class="error-message" *ngIf="driverForm.get('name')?.errors?.['required']">
+            Username is required
+          </small>
+        </div>
+  
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" formControlName="email" class="form-input">
+          </div>
+          <div  class="error-container" *ngIf="driverForm.get('email')?.invalid && 
+                      (driverForm.get('email')?.dirty || 
+                       driverForm.get('email')?.touched)">
+          <small class="error-message" *ngIf="driverForm.get('email')?.errors?.['required']">
+            Email is required
+          </small>
+          <small class="error-message" *ngIf="driverForm.get('email')?.errors?.['email']">
+            Invalid email format
+          </small>
+          <small class="error-message" *ngIf="driverForm.get('email')?.errors?.['duplicate']">
+            Email already exists
+          </small>
+        </div>
+  
+          <div class="form-group">
+            <label class="form-label">Country</label>
+            <select id="country" class="country-select" formControlName="country" (change)="onCountryChange($event)">
+              <option value="">-- Select Country --</option>
+              <option *ngFor="let country of countries" [value]="country.countryname">
+                {{country.countryname}}
+              </option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <select id="city" class="country-select" formControlName="city">
+              <option value="">-- Select City --</option>
+              <option *ngFor="let city of cities" [value]="city.city">
+                {{city.city}}
+              </option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" formControlName="phone" class="form-input">
+          </div>
+          <div  class="error-container" *ngIf="driverForm.get('phone')?.invalid && 
+                (driverForm.get('phone')?.dirty || 
+                 driverForm.get('phone')?.touched)">
+          <small class="error-message" *ngIf="driverForm.get('phone')?.errors?.['required']">
+            Phone number is required
+          </small>
+          <small class="error-message" *ngIf="driverForm.get('phone')?.errors?.['pattern']">
+            Invalid phone number format
+          </small>
+          <small class="error-message" *ngIf="driverForm.get('phone')?.errors?.['duplicate']">
+            Phone number already exists
+          </small>
+        </div>
+  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="isServiceModalOpen" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Service Type</h2>
+        </div>
+        <select id="service" class="country-select" (change)="onservicechange($event)" >
+          <option value="">-- Select Service Type --</option>
+          <option *ngFor="let service of services" [value]="service._id">
+            {{service.vehicletype}}
+          </option>
+        </select>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" (click)="addservice()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="pagination">
+      <button [disabled]="currentpage === 1" (click)="changepage(currentpage - 1)">Previous</button>
+      <button [disabled]="currentpage === totalpage" (click)="changepage(currentpage + 1)">Next</button>
+    </div>
+  </div>

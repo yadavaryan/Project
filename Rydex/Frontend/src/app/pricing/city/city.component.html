@@ -1,0 +1,56 @@
+
+<div class="page-container">
+    <div class="content-wrapper">
+      <header class="header-section">
+        <h2 class="title">City</h2>
+      </header>
+      
+      <div class="main-controls-section">
+        <div class="primary-controls">
+          <div class="control-group">
+            <label for="countrySelect">Country</label>
+            <select 
+              id="countrySelect"
+              class="country-select"
+              [(ngModel)]="selectedCountry"
+              (change)="onCountryChange()">
+              <option value="">-- Select Country --</option>
+              <option *ngFor="let country of countryname" [value]="country.countryname">
+                {{country.countryname}}
+              </option>
+            </select>
+          </div>
+  
+          <div class="control-group">
+            <label for="searchcity">City Search</label>
+            <input 
+              [(ngModel)]="selectedcity"
+              type="text"
+              id="searchcity"
+              #searchcity
+              class="search-input"
+              placeholder="Enter city name...">
+          </div>
+  
+          <button class="primary-button" (click)="savepolygone()">
+            Save Polygone
+          </button>
+        </div>
+  
+        <div class="cities-list">
+          <div class="cities-header">Available Cities</div>
+          <div class="cities-scroll">
+            <button 
+              *ngFor="let city of allcity"
+              class="city-button" (click)="onclickcity(city.city)">
+              {{city.city}}
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,73 @@
+<div class="rides-container">
+    <div class="table-container">
+        <table class="rides-table">
+        <thead>
+            <tr>
+            <th title="Request ID">
+                <span class="header-content" >
+                🆔
+                </span>
+            </th>
+            <th title="User Name">
+                <span class="header-content" >
+                👤
+                </span>
+            </th>
+            <th title="Phone Number">
+                <span class="header-content">
+                📱
+                </span>
+            </th>
+            <th title="Pickup Time">
+                <span class="header-content" >
+                🕒
+                </span>
+            </th>
+            <th title="Pickup Location">
+                <span class="header-content" >
+                📍
+                </span>
+            </th>
+            <th title="Dropoff Location">
+                <span class="header-content" >
+                🏁
+                </span>
+            </th>
+            <th title="Vehicle Type">
+                <span class="header-content" >
+                🚗
+                </span>
+            </th>
+            <th title="Status">
+                <span class="header-content">
+                🔄
+                </span>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ride of rides" (click)="onrideclick(ride)">
+            <td>{{ride._id | slice: 0:8}} </td>
+            <td>{{ride.users[0].name}}</td>
+            <td>{{ride.users[0].phone}}</td>
+            <td>
+                <div class="time-cell">
+                <span class="time">{{ ride.assignAt ? (ride.assignAt | date: 'short') : 'Schedule for Now' }}</span>
+                </div>
+            </td>
+            <td class="address-cell" [title]="ride.pickupAddress">
+                {{ride.pickup}}
+            </td>
+            <td class="address-cell" [title]="ride.dropoffAddress">
+                {{ride.drop}}
+            </td>
+            <td>{{ride.vehicle[0].vehicletype}}</td>
+            <td>
+                {{ ride.status || 'Assigned' }}
+            </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+<app-ride-details [rideDetails]="selectedride" [isOpen]="isopen" (onClose)="onclose()"> </app-ride-details>
